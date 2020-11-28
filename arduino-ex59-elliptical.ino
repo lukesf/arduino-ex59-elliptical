@@ -405,11 +405,13 @@ void display_speed() {
 
 void display_default() {
   leds->clear();
-  int height = map(tension, 0, 200, 1, 8);
+  int height = map(tension, 0, 70, 1, 8);
   for (int i=0; i<height; i++) {
     leds->drawLine(0, mh-1, mw-1, mh-1-i, LED_GREEN_LOW);
   }
-  int pos_x = map(rpm, 0, 150, 1,13);
-  int pos_y = 6-(int)((float) height*(13.-pos_x)/13.);
+  int pos_x = map(rpm, 0, 120, 1,13);
+  int pos_y = 6-(int)((float) height*pos_x/13.);
   leds->drawLine(pos_x, pos_y, pos_x+(int)dude_walker, pos_y+1, LED_BLUE_MEDIUM);
+  leds->drawPixel(pos_x, pos_y-1, leds->Color(100,50,20));
+
 }
